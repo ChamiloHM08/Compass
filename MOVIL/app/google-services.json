@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "405997263048",
+    "project_id": "compass-g2",
+    "storage_bucket": "compass-g2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405997263048:android:69afd0cb25c15128e3edfd",
+        "android_client_info": {
+          "package_name": "com.example.compass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY4vJrzbHUutp_iEILk8OLkc7gOw3luCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
