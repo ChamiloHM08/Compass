@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "405997263048",
+    "firebase_url": "https://compass-g2-default-rtdb.firebaseio.com",
     "project_id": "compass-g2",
     "storage_bucket": "compass-g2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:405997263048:android:69afd0cb25c15128e3edfd",
+        "mobilesdk_app_id": "1:405997263048:android:e5c05d10f6c78e63e3edfd",
         "android_client_info": {
           "package_name": "com.example.compass"
         }
