@@ -13,5 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Compass"
+rootProject.name = "compass1"
 include(":app")
+ 
