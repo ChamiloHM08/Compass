@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">compass1</string>
+    <string name="title_home">Descubrir</string>
+    <string name="title_juegos">Jugar</string>
+    <string name="title_playlists">Playlists</string>
+    <string name="action_settings">Settings</string>
+</resources>
