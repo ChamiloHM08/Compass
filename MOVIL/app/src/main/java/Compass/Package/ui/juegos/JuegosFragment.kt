@@ -1,4 +1,4 @@
-package com.example.compass1.ui.juegos
+package Compass.Package.ui.juegos
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.compass1.databinding.FragmentJuegosBinding
+import Compass.Package.databinding.FragmentJuegosBinding
 
 class JuegosFragment : Fragment() {
 

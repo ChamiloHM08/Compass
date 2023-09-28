@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "405997263048",
+    "firebase_url": "https://compass-g2-default-rtdb.firebaseio.com",
+    "project_id": "compass-g2",
+    "storage_bucket": "compass-g2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405997263048:android:27c86d1f0d9ecdd4e3edfd",
+        "android_client_info": {
+          "package_name": "Compass.Package"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY4vJrzbHUutp_iEILk8OLkc7gOw3luCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405997263048:android:06f38b66a7fa2481e3edfd",
+        "android_client_info": {
+          "package_name": "com.example.compasslogin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY4vJrzbHUutp_iEILk8OLkc7gOw3luCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

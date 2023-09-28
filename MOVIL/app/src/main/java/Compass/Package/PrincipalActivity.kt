@@ -1,18 +1,16 @@
-package com.example.compass1
+package Compass.Package
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.compass1.databinding.ActivityMainBinding
-import com.example.compass1.ui.adapter.Horizontal_RecycledView
-class MainActivity : AppCompatActivity() {
+import Compass.Package.databinding.ActivityMainBinding
+import Compass.Package.ui.adapter.Horizontal_RecycledView
+class PrincipalActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var recyclerView: RecyclerView

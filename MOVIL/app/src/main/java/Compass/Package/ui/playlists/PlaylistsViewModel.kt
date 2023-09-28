@@ -1,13 +1,13 @@
-package com.example.compass1.ui.juegos
+package Compass.Package.ui.playlists
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class JuegosViewModel : ViewModel() {
+class PlaylistsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Implementacion de Matches"
+        value = "Aquí tendremos las playlists"
     }
     val text: LiveData<String> = _text
 }

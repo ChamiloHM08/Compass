@@ -1,4 +1,4 @@
-package com.example.compass1.ui.model
+package Compass.Package.ui.model
 
 import android.media.Image
 

@@ -1,4 +1,4 @@
-package com.example.compass1.ui.playlists
+package Compass.Package.ui.playlists
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.compass1.databinding.FragmentPlaylistsBinding
+import Compass.Package.databinding.FragmentPlaylistsBinding
 
 class PlaylistsFragment : Fragment() {
 

@@ -1,11 +1,11 @@
-package com.example.compass1.ui.adapter
+package Compass.Package.ui.adapter
 
+import Compass.Package.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.compass1.R
 
 class Horizontal_RecycledView(private val listaDeRecursos: List<Int>) : RecyclerView.Adapter<Horizontal_RecycledView.MyViewHolder>() {
 

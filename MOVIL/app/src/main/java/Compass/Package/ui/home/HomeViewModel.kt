@@ -1,13 +1,13 @@
-package com.example.compass1.ui.playlists
+package Compass.Package.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class PlaylistsViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Aquí tendremos las playlists"
+        value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
 }
