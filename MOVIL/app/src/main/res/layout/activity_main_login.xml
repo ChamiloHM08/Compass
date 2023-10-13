@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.MainActivity">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -48,5 +48,13 @@
         android:layout_below="@id/buttonLogin"
         android:layout_marginTop="29dp"
         android:text="Registrarse" />
+
+    <Button
+        android:id="@+id/buttonTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonLogin"
+        android:layout_marginTop="116dp"
+        android:text="Ingreso Express" />
 
 </RelativeLayout>

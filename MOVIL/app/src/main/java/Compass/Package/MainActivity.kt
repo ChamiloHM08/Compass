@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         editTextPassword = findViewById(R.id.editTextPassword)
         val buttonLogin: Button = findViewById(R.id.buttonLogin)
         val buttonRegister: Button = findViewById(R.id.buttonRegister)
+        val buttonTest: Button = findViewById(R.id.buttonTest)
 
         // Configurar evento de clic para el botón de inicio de sesión
         buttonLogin.setOnClickListener {
@@ -63,6 +64,11 @@ class MainActivity : AppCompatActivity() {
         buttonRegister.setOnClickListener {
             // Redirigir al usuario a la pantalla de registro (RegisterActivity)
             val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+        buttonTest.setOnClickListener {
+            // Redirigir al usuario a la pantalla de registro (RegisterActivity)
+            val intent = Intent(this, PrincipalActivity::class.java)
             startActivity(intent)
         }
     }
