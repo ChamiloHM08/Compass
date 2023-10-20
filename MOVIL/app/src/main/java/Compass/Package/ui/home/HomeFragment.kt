@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import Compass.Package.R
 import Compass.Package.databinding.FragmentHomeBinding
 import Compass.Package.ui.adapter.Horizontal_RecycledView
+import android.widget.ImageView
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -57,6 +59,8 @@ class HomeFragment : Fragment() {
         recyclerView1.adapter = adapter1
 
         // Agrega más contenido y lógica aquí según tus necesidades
+
+
 
         return root
     }

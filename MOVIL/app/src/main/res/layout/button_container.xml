@@ -1,0 +1,28 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardLayout"
+    android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnLike"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/like_green_24dp" />
+
+        <Button
+            android:id="@+id/btnRewind"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/rewind_blue_24dp" />
+
+        <Button
+            android:id="@+id/btnDislike"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/skip_red_24dp" />
+    </LinearLayout>

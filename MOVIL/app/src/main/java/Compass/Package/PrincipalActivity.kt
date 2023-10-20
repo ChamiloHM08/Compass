@@ -1,5 +1,6 @@
 package Compass.Package
 
+import Compass.Package.ui.juegos.JuegosFragment
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +11,7 @@ import androidx.navigation.NavController
 
 class PrincipalActivity : AppCompatActivity() {
 
-
+    private val juegosFragment = JuegosFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

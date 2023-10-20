@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
-
 }
 
 android {
@@ -38,12 +37,19 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
-
-
 }
 
 dependencies {
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.facebook.fresco:fresco:2.6.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation("com.github.yuyakaido:cardstackview:2.3.4")
+
+    implementation("androidx.cardview:cardview:1.0.0") // Cambié la versión a androidx
+
+    implementation("com.lorentzos.swipecards:library:1.0.9@aar")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -61,6 +67,4 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
-
 }
-

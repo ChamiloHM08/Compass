@@ -1,42 +1,58 @@
-package Compass.Package.ui.playlists
+    package Compass.Package.ui.playlists
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import Compass.Package.databinding.FragmentPlaylistsBinding
+    import Compass.Package.R
+    import Compass.Package.databinding.FragmentPlaylistsBinding
+    import android.os.Bundle
+    import android.view.*
+    import android.widget.Toast
+    import androidx.fragment.app.Fragment
+    import androidx.recyclerview.widget.GridLayoutManager
+    import androidx.recyclerview.widget.LinearLayoutManager
+    import androidx.recyclerview.widget.RecyclerView
 
-class PlaylistsFragment : Fragment() {
+    class PlaylistsFragment : Fragment() {
 
-    private var _binding: FragmentPlaylistsBinding? = null
+        private var _binding: FragmentPlaylistsBinding? = null
+        private val binding get() = _binding!!
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View {
+            _binding = FragmentPlaylistsBinding.inflate(inflater, container, false)
+            val root: View = binding.root
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val playlistsViewModel =
-            ViewModelProvider(this).get(PlaylistsViewModel::class.java)
+            val playlistList = listOf(
+                "Halloween",
+                "Acción",
+                "Comedias",
+                "Familia",
+                "Pareja"
+            )
 
-        _binding = FragmentPlaylistsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+            val imageResourcesForRecyclerView1 = listOf(
+                R.drawable.halloween,
+                R.drawable.accion,
+                R.drawable.comedia,
+                R.drawable.familias,
+                R.drawable.parejas,
+            )
 
-        val textView: TextView = binding.textPlaylists
-        playlistsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+            val recyclerView: RecyclerView = root.findViewById(R.id.rvPlaylists)
+            recyclerView.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
+
+            val adapter = PlaylistAdapter(playlistList, imageResourcesForRecyclerView1) { playlistTitle ->
+                Toast.makeText(context, "Esto Redireccionará a películas en: $playlistTitle", Toast.LENGTH_SHORT).show()
+            }
+
+            recyclerView.adapter = adapter
+
+            return root
         }
-        return root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null
+        }
     }
-}
