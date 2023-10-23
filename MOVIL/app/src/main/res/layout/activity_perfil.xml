@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilActivity"
+    android:background="@drawable/background_gradient">
+
+
+
+    <!-- Foto de perfil -->
+    <ImageView
+        android:id="@+id/imageViewPerfil"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/default_profile_image" />
+
+    <!-- Botón Cambiar Foto de Perfil -->
+    <Button
+        android:id="@+id/buttonCambiarFotoPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewPerfil"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Cambiar Foto"
+        style="@style/OvalButtonStyle"
+        android:textColor="#FFFFFF"/>
+
+    <!-- TextViews -->
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonCambiarFotoPerfil"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Nombre: Añadir Nombre"
+        android:textColor="#000000"
+        android:background="@drawable/edit_text_background" />
+
+    <TextView
+        android:id="@+id/textViewApellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewNombre"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Apellido: Añadir Apellido"
+        android:textColor="#000000"
+        android:background="@drawable/edit_text_background" />
+
+    <TextView
+        android:id="@+id/textViewCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewApellido"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Correo Electrónico"
+        android:textColor="#000000"
+        android:background="@drawable/edit_text_background" />
+
+    <!-- Botones Editar Perfil y Volver al Inicio -->
+    <Button
+        android:id="@+id/buttonEditarPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCorreo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Editar Perfil"
+        style="@style/OvalButtonStyle"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/buttonVolverInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonEditarPerfil"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Volver al Inicio"
+        style="@style/OvalButtonStyle"
+        android:textColor="#FFFFFF"/>
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<resources>
+    <style name="OvalButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/oval_button_bg</item>
+        <item name="android:backgroundTint">@color/colorSky</item>
+        <item name="android:layout_marginTop">8dp</item> <!-- Ajusta el margen según tus preferencias -->
+        <item name="android:textSize">16sp</item> <!-- Ajusta el tamaño del texto según tus preferencias -->
+        <item name="android:paddingStart">16dp</item> <!-- Ajusta el relleno lateral según tus preferencias -->
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+</resources>

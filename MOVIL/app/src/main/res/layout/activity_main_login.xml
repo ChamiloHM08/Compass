@@ -5,16 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background_gradient">
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/compass" />
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
         android:text="Compass"
         android:textSize="24sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"/>
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -22,39 +33,49 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewTitle"
         android:layout_marginTop="20dp"
-        android:hint="Correo Electrónico" />
+        android:hint="Correo Electrónico"
+        android:textColor="#000000"
+        android:background="@drawable/edit_text_background" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextEmail"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="39dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="Contraseña"
         android:inputType="textPassword"
-        android:hint="Contraseña"/>
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/buttonLogin"
+        style="@style/OvalButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextPassword"
-        android:layout_marginTop="39dp"
-        android:text="Iniciar Sesión" />
+        android:layout_marginTop="27dp"
+        android:text="Iniciar Sesión"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/buttonRegister"
+        style="@style/OvalButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonLogin"
-        android:layout_marginTop="29dp"
-        android:text="Registrarse" />
+        android:layout_marginTop="22dp"
+        android:text="Registrarse"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/buttonTest"
+        style="@style/OvalButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonLogin"
-        android:layout_marginTop="116dp"
-        android:text="Ingreso Express" />
+        android:layout_marginTop="90dp"
+        android:text="Ingreso Express"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>
