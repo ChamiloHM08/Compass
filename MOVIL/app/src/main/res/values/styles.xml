@@ -9,4 +9,5 @@
         <item name="android:paddingStart">16dp</item> <!-- Ajusta el relleno lateral según tus preferencias -->
         <item name="android:paddingEnd">16dp</item>
     </style>
+
 </resources>

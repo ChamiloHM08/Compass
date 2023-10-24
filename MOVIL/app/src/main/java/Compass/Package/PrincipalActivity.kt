@@ -25,7 +25,6 @@ class PrincipalActivity : AppCompatActivity() {
 
         val btnVerPerfil: Button = findViewById(R.id.btnVerPerfil)
         btnVerPerfil.setOnClickListener {
-            // Abre la actividad PerfilActivity
             val intent = Intent(this, PerfilActivity::class.java)
             startActivity(intent)
             Log.d("PrincipalActivity", "Abrir PerfilActivity") // Registro para depuración
@@ -33,10 +32,9 @@ class PrincipalActivity : AppCompatActivity() {
 
         val btnCerrarSesion: Button = findViewById(R.id.btnIniciarSesion)
         btnCerrarSesion.setOnClickListener {
-            // Redirige a la actividad MainActivity (puedes reemplazar MainActivity con el nombre de tu actividad de inicio de sesión)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish() // Cierra la actividad actual
+            finish()
             Log.d("PrincipalActivity", "Cerrar Sesión") // Registro para depuración
         }
     }
@@ -49,7 +47,6 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_view_profile -> {
-                // Abre la actividad PerfilActivity
                 val intent = Intent(this, PerfilActivity::class.java)
                 startActivity(intent)
                 Log.d("PrincipalActivity", "Abrir PerfilActivity") // Registro para depuración

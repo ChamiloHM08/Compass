@@ -21,10 +21,8 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        // Inicializar Firebase Authentication
         auth = FirebaseAuth.getInstance()
 
-        // Inicializar vistas
         editTextName = findViewById(R.id.editTextName)
         editTextLastName = findViewById(R.id.editTextLastName)
         editTextEmail = findViewById(R.id.editTextEmail)
@@ -32,43 +30,35 @@ class RegisterActivity : AppCompatActivity() {
         val buttonRegister: Button = findViewById(R.id.buttonRegister)
         val buttonBack: Button = findViewById(R.id.buttonBack)
 
-        // Configurar evento de clic para el botón de registro
         buttonRegister.setOnClickListener {
             val name = editTextName.text.toString()
             val lastName = editTextLastName.text.toString()
             val email = editTextEmail.text.toString()
             val password = editTextPassword.text.toString()
 
-            // Verificar si los campos de entrada están vacíos
             if (name.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Por favor, rellene el formulario", Toast.LENGTH_SHORT).show()
             } else {
-                // Registrar al usuario en Firebase Authentication
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Registro exitoso, mostrar mensaje y redirigir al usuario a PrincipalActivity
                             val user: FirebaseUser? = auth.currentUser
                             Toast.makeText(this, "Registro completado", Toast.LENGTH_SHORT).show()
 
-                            // Redirigir al usuario a PrincipalActivity
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
-                            finish() // Cerrar la actividad actual
+                            finish()
                         } else {
-                            // Error en el registro, mostrar mensaje de error
                             Toast.makeText(this, "Error en el registro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
                     }
             }
         }
 
-        // Configurar evento de clic para el botón "Volver al Inicio"
         buttonBack.setOnClickListener {
-            // Redirigir al usuario a PrincipalActivity
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish() // Cerrar la actividad actual
+            finish()
         }
     }
 }

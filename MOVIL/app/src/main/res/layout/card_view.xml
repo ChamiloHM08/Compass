@@ -5,7 +5,8 @@
     android:id="@+id/SwipeCardView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardElevation="5dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout

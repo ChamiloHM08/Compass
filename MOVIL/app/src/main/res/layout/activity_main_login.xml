@@ -34,6 +34,7 @@
         android:layout_below="@id/textViewTitle"
         android:layout_marginTop="20dp"
         android:hint="Correo Electrónico"
+        android:textColorHint="#A5A5A5"
         android:textColor="#000000"
         android:background="@drawable/edit_text_background" />
 
@@ -44,6 +45,7 @@
         android:layout_below="@id/editTextEmail"
         android:layout_marginTop="39dp"
         android:background="@drawable/edit_text_background"
+        android:textColorHint="#A5A5A5"
         android:hint="Contraseña"
         android:inputType="textPassword"
         android:textColor="#000000" />

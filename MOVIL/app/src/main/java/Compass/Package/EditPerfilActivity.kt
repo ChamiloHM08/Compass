@@ -21,47 +21,37 @@ class EditPerfilActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_perfil)
 
-        // Inicializar Firebase Authentication
         auth = Firebase.auth
 
-        // Obtener referencias a los elementos de la interfaz de usuario
         val buttonActualizarPerfil = findViewById<Button>(R.id.buttonActualizarPerfil)
-        val buttonCancelar = findViewById<Button>(R.id.buttonCancelar) // Botón "Cancelar"
+        val buttonCancelar = findViewById<Button>(R.id.buttonCancelar)
         editTextNombre = findViewById(R.id.editTextNombre)
         editTextApellido = findViewById(R.id.editTextApellido)
 
-        // Configurar evento de clic para el botón "Actualizar Perfil"
         buttonActualizarPerfil.setOnClickListener {
-            // Obtener los nuevos valores de nombre y apellido
             val nuevoNombre = editTextNombre.text.toString()
             val nuevoApellido = editTextApellido.text.toString()
 
-            // Actualizar el perfil del usuario en Firebase
             val user: FirebaseUser? = auth.currentUser
             val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName("$nuevoNombre $nuevoApellido") // Incluir el apellido en el nuevo nombre
+                .setDisplayName("$nuevoNombre $nuevoApellido")
                 .build()
 
             user?.updateProfile(profileUpdates)
                 ?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        // Los datos del perfil se actualizaron con éxito
                         val intent = Intent(this, PerfilActivity::class.java)
                         startActivity(intent)
-                        finish() // Cerrar la actividad actual
+                        finish()
                     } else {
-                        // Ocurrió un error al actualizar el perfil
-                        // Maneja el error de acuerdo a tus necesidades
                     }
                 }
         }
 
-        // Configurar evento de clic para el botón "Cancelar"
         buttonCancelar.setOnClickListener {
-            // Redirige al usuario a la actividad PerfilActivity
             val intent = Intent(this, PerfilActivity::class.java)
             startActivity(intent)
-            finish() // Cierra la actividad actual (EditarPerfilActivity)
+            finish()
         }
     }
 }
