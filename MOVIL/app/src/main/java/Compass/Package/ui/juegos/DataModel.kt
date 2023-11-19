@@ -5,7 +5,7 @@ import java.io.Serializable
 class DataModel : Serializable {
     private var titulo: String? = null
     private var totalLikes: String? = null
-    private var photo = 0
+    private var photo: String? = null
     private var añoEstreno : String?=null
     private var plataforma: String? = null
     private var clasificacion: String? = null

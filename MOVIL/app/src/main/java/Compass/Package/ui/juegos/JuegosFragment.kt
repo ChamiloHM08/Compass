@@ -2,26 +2,24 @@ package Compass.Package.ui.juegos
 
 import Compass.Package.R
 import Compass.Package.databinding.FragmentJuegosBinding
-import Compass.Package.databinding.FragmentPlaylistsBinding
-import Compass.Package.ui.home.HomeFragment
-import Compass.Package.ui.juegos.Data
-import Compass.Package.ui.juegos.DataModel
+import Compass.Package.ui.Api.Api_Client.tmdbApiService
+import Compass.Package.ui.Api.TmdbApiService
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 
@@ -29,6 +27,8 @@ class JuegosFragment : Fragment() {
 
     private var _binding: FragmentJuegosBinding? = null
     private val binding get() = _binding!!
+
+
 
     private lateinit var context: Context
     private lateinit var parentView: RelativeLayout
@@ -46,6 +46,7 @@ class JuegosFragment : Fragment() {
 
     private var imageViewEnCentro: ImageView? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,6 +57,31 @@ class JuegosFragment : Fragment() {
 
         context = requireContext()
         parentView = root.findViewById(R.id.main_layoutview)
+
+
+
+        val apiKey = "8cfb3de7194927508a93970ddb761e47"
+        val page = 2
+        val call = tmdbApiService.getPopularMovies(apiKey,page)
+
+        call.enqueue(object : Callback<TmdbApiService.MovieResponse> {
+            override fun onResponse(call: Call<TmdbApiService.MovieResponse>, response: Response<TmdbApiService.MovieResponse>) {
+                if (response.isSuccessful) {
+
+                    val movies = response.body()?.results
+                    getArrayData(movies ?: emptyList())
+                    createCards()
+
+                    // Hacer algo con la lista de películas
+                } else {
+                    // Manejar el error
+                }
+            }
+
+            override fun onFailure(call: Call<TmdbApiService.MovieResponse>, t: Throwable) {
+                // Manejar el fallo
+            }
+        })
 
         btnLike = root.findViewById(R.id.btnLike)
         btnRewind = root.findViewById(R.id.btnRewind)
@@ -70,8 +96,6 @@ class JuegosFragment : Fragment() {
         screenCenter = windowWidth / 2
         userDataModelArrayList = ArrayList()
 
-        getArrayData()
-        createCards()
 
         return root
     }
@@ -184,29 +208,32 @@ class JuegosFragment : Fragment() {
         }
     }
 
-    private fun getArrayData() {
-        val data = listOf(
-            Data("Covenant", "2017", "5 M", R.drawable.covenant, "Prime Video", "6.5", "En esta secuela de 'Prometheus', la tripulación de la nave Covenant se dirige a un planeta remoto que creen que es un paraíso. Sin embargo, pronto descubren que el planeta está habitado por una raza alienígena hostil."),
-            Data("Conde", "2023", "6 M", R.drawable.conde, "Netflix", "2", "Una joven mujer se enamora de un apuesto conde, pero su amor está prohibido."),
-            Data("Titanic", "1997", "7 M", R.drawable.titanic, "Disney+", "3", "Un joven artista de clase baja y una rica heredera se enamoran a bordo del transatlántico Titanic, pero su amor se ve truncado por un trágico accidente."),
-            Data("Dragonheart", "1994", "5 M", R.drawable.dragon_heart, "HBO MAX", "4", "Un caballero medieval se une a un dragón para luchar contra un malvado rey."),
-            Data("Elemental", "2023", "3 M", R.drawable.elemental, "Disney+", "5", "Dos personas de dos mundos muy diferentes se unen para salvar a la ciudad de la destrucción."),
-            Data("John Wick: Chapter 4", "2023", "7.7 M", R.drawable.jhon_wick_4, "Peacock", "6", "John Wick se enfrenta a un nuevo enemigo en su búsqueda de venganza."),
-            Data("Spider-Man: Across the Spider-Verse", "2023", "9 M", R.drawable.spiderman, "Disney+", "7", "Miles Morales y Gwen Stacy viajan a través del multiverso para enfrentarse a un nuevo enemigo.")
-        )
-
-        for (item in data) {
+    private fun getArrayData(movies: List<TmdbApiService.Movies>) {
+        for (movie in movies) {
             val model = DataModel()
-            model.setName(item.titulo)
-            model.setTotalLikes(item.likes)
-            model.setAñoEstreno(item.añoEstreno)
-            model.setPhoto(item.photo)
-            model.setPlataforma(item.plataforma)
-            model.setClasificacion(item.clasificacion)
-            model.setDescripcion(item.descripcion)
+            model.setName(movie.title)
+            model.setAñoEstreno(movie.release_date)
+            model.setPhoto(getImageResourceForMovie(movie.poster_path))
+            model.setPlataforma(getPlatformForMovie(movie.title))
+            model.setClasificacion(movie.vote_average.toString())
+            model.setDescripcion(movie.overview)
+
+            // Otros campos que desees asignar al modelo de datos
+
             userDataModelArrayList.add(model)
         }
-
         userDataModelArrayList.reverse()
     }
+        // Implementa tu lógica para obtener el recurso de imagen según el nombre de la película
+        // Puedes utilizar un when o un mapa que asocie nombres de películas con recursos de imagen
+        // Retorna la misma imagen para todas las películas en este caso
+        return R.drawable.spiderman
+    }
+
+    private fun getPlatformForMovie(movieName: String): String {
+        // Implementa tu lógica para obtener la plataforma según el nombre de la película
+        // Retorna la misma plataforma para todas las películas en este caso
+        return movieName
+    }
+
 }
