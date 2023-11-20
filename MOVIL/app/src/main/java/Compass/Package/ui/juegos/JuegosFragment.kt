@@ -224,6 +224,8 @@ class JuegosFragment : Fragment() {
         }
         userDataModelArrayList.reverse()
     }
+
+    private fun getImageResourceForMovie(movieName: String): Int {
         // Implementa tu lógica para obtener el recurso de imagen según el nombre de la película
         // Puedes utilizar un when o un mapa que asocie nombres de películas con recursos de imagen
         // Retorna la misma imagen para todas las películas en este caso
