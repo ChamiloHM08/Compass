@@ -17,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -142,7 +143,11 @@ class JuegosFragment : Fragment() {
         containerView.layoutParams = layoutParams
         containerView.tag = index
         val userIMG = containerView.findViewById<ImageView>(R.id.userIMG)
-        userIMG.setBackgroundResource(userDataModelArrayList[index].getPhoto())
+
+        Glide.with(context)
+            .load(userDataModelArrayList[index].getPhoto())
+            .into(userIMG)
+
         return containerView
     }
 
@@ -225,11 +230,11 @@ class JuegosFragment : Fragment() {
         userDataModelArrayList.reverse()
     }
 
-    private fun getImageResourceForMovie(movieName: String): Int {
-        // Implementa tu lógica para obtener el recurso de imagen según el nombre de la película
-        // Puedes utilizar un when o un mapa que asocie nombres de películas con recursos de imagen
-        // Retorna la misma imagen para todas las películas en este caso
-        return R.drawable.spiderman
+    private fun getImageResourceForMovie(posterPath: String): String {
+        val baseUrl = "https://image.tmdb.org/t/p/"
+        val posterSize = "w500"  // Puedes ajustar el tamaño según tus preferencias
+
+        return baseUrl + posterSize + posterPath
     }
 
     private fun getPlatformForMovie(movieName: String): String {

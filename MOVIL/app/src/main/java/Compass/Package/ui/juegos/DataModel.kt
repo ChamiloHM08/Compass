@@ -5,7 +5,7 @@ import java.io.Serializable
 class DataModel : Serializable {
     private var titulo: String? = null
     private var totalLikes: String? = null
-    private var photo: Int = 0
+    private var photo: String?=null
     private var añoEstreno : String?=null
     private var plataforma: String? = null
     private var clasificacion: String? = null
@@ -35,11 +35,11 @@ class DataModel : Serializable {
         totalLikes = likes
     }
 
-    fun getPhoto(): Int {
+    fun getPhoto(): String? {
         return photo
     }
 
-    fun setPhoto(photo: Int) {
+    fun setPhoto(photo: String) {
         this.photo = photo
     }
 

@@ -46,6 +46,9 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    implementation ("com.squareup.picasso:picasso:2.71828")
+
+
     implementation("com.github.yuyakaido:cardstackview:2.3.4")
 
     implementation("androidx.cardview:cardview:1.0.0") // Cambié la versión a androidx
