@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditPerfilActivity"
+    android:background="@drawable/background_gradient">
+
+
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingrese los datos nuevos"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/buttonActualizarPerfil"
+        style="@style/OvalButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:text="@string/button_actualizar_perfil" />
+
+    <EditText
+        android:id="@+id/editTextNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/hint_nombre"
+        android:textColor="#000000" />
+
+    <EditText
+        android:id="@+id/editTextApellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextNombre"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/hint_apellido"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/buttonCancelar"
+        style="@style/OvalButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonActualizarPerfil"
+        android:layout_marginTop="16dp"
+        android:text="Cancelar" />
+
+
+</RelativeLayout>

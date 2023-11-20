@@ -5,7 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:background="@drawable/background_gradient">
+
+
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/compass" />
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -13,23 +24,32 @@
         android:layout_height="wrap_content"
         android:text="Registro"
         android:textSize="24sp"
+        android:textColorHint="#A5A5A5"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="180dp"
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewTitle"
-        android:hint="Nombre"/>
+        android:layout_below="@id/imageViewLogo"
+        android:layout_marginTop="51dp"
+        android:textColorHint="#A5A5A5"
+        android:background="@drawable/edit_text_background"
+        android:hint="Nombre"
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/editTextLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextName"
-        android:layout_marginTop="16dp"
-        android:hint="Apellidos"/>
+        android:layout_marginTop="17dp"
+        android:textColorHint="#A5A5A5"
+        android:background="@drawable/edit_text_background"
+        android:hint="Apellidos"
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -37,32 +57,43 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextLastName"
         android:layout_marginTop="16dp"
-        android:hint="Correo Electrónico"/>
+        android:textColorHint="#A5A5A5"
+        android:background="@drawable/edit_text_background"
+        android:hint="Correo Electrónico"
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextEmail"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
+        android:textColorHint="#A5A5A5"
+        android:background="@drawable/edit_text_background"
+        android:hint="Contraseña"
         android:inputType="textPassword"
-        android:hint="Contraseña"/>
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/buttonRegister"
+        style="@style/OvalButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextPassword"
         android:layout_marginTop="32dp"
-        android:text="Registrarse"/>
+        android:textColorHint="#A5A5A5"
+        android:text="Registrarse"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/buttonBack"
+        style="@style/OvalButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonRegister"
         android:layout_marginTop="16dp"
-        android:text="Volver al Inicio"/>
+        android:text="Volver al Inicio"
+        android:textColor="#FFFFFF" />
 
 
 </RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#0489AA" />  <!-- Cambia el color a rojo (#FF0000) o al que desees -->
+    <corners android:radius="20dp" />  <!-- Este valor controla la curvatura de las esquinas -->
+</shape>
+
