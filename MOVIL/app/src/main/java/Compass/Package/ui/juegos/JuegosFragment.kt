@@ -7,6 +7,7 @@ import Compass.Package.ui.Api.TmdbApiService
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
@@ -15,12 +16,16 @@ import android.widget.LinearLayout.LayoutParams
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -44,9 +49,6 @@ class JuegosFragment : Fragment() {
     private var xCord = 0
     private var x = 0
     private var likes = 0
-
-    private var imageViewEnCentro: ImageView? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,14 +75,13 @@ class JuegosFragment : Fragment() {
                     getArrayData(movies ?: emptyList())
                     createCards()
 
-                    // Hacer algo con la lista de películas
                 } else {
-                    // Manejar el error
+                    //proximamente
                 }
             }
 
             override fun onFailure(call: Call<TmdbApiService.MovieResponse>, t: Throwable) {
-                // Manejar el fallo
+                //proximamente
             }
         })
 
@@ -88,8 +89,10 @@ class JuegosFragment : Fragment() {
         btnRewind = root.findViewById(R.id.btnRewind)
         btnDislike = root.findViewById(R.id.btnDislike)
 
-
-        setupButtonListeners()
+        // Asignar la función onButtonClick como OnClickListener a los botones
+        btnLike.setOnClickListener { onButtonClick(2) }
+        btnRewind.setOnClickListener { onButtonClick(0) }
+        btnDislike.setOnClickListener { onButtonClick(1) }
 
         val size = Point()
         activity?.windowManager?.defaultDisplay?.getSize(size)
@@ -101,19 +104,30 @@ class JuegosFragment : Fragment() {
         return root
     }
 
-    private fun setupButtonListeners() {
-        btnLike.setOnClickListener {
-            showToast("Me gusta")
-        }
+    private fun onButtonClick(likes: Int) {
+        val currentCardIndex = parentView.childCount - 1
 
-        btnRewind.setOnClickListener {
-            showToast("Retroceder")
-        }
+        if (currentCardIndex >= 0) {
+            val currentCard = parentView.getChildAt(currentCardIndex)
 
-        btnDislike.setOnClickListener {
-            showToast("No me gusta")
+            when (likes) {
+                0 -> {
+                    showToast("Nada")
+                    currentCard.x = 0f
+                    currentCard.rotation = 0f
+                }
+                1 -> {
+                    showToast("No")
+                    parentView.removeView(currentCard)
+                }
+                2 -> {
+                    showToast("Sí")
+                    parentView.removeView(currentCard)
+                }
+            }
         }
     }
+
 
     private fun showToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -125,15 +139,14 @@ class JuegosFragment : Fragment() {
     }
 
     private fun createCards() {
-        for (i in userDataModelArrayList.indices) {
-            val containerView = createCardContainer(i)
-            val dataModel = userDataModelArrayList[i]
-            setupCardLayout(containerView, i)
+        for ((index, dataModel) in userDataModelArrayList.withIndex()) {
+            val containerView = createCardContainer(index)
             setupTextViews(containerView, dataModel)
             setupTouchListeners(containerView)
             parentView.addView(containerView)
         }
     }
+
 
     private fun createCardContainer(index: Int): View {
         val containerView = LayoutInflater.from(context).inflate(R.layout.card_view, null)
@@ -150,10 +163,6 @@ class JuegosFragment : Fragment() {
 
         return containerView
     }
-
-    private fun setupCardLayout(containerView: View, index: Int) {
-    }
-
     private fun setupTextViews(containerView: View, dataModel: DataModel) {
         val tvName = containerView.findViewById<TextView>(R.id.tvName)
         val plataformaRec = containerView.findViewById<TextView>(R.id.plataforma_rec)
@@ -171,6 +180,7 @@ class JuegosFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     private fun setupTouchListeners(containerView: View) {
         containerView.setOnTouchListener { _, event ->
+
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     x = event.x.toInt()
@@ -206,21 +216,25 @@ class JuegosFragment : Fragment() {
                         Toast.makeText(context, "Sí", Toast.LENGTH_SHORT).show()
                         parentView.removeView(containerView)
                     }
-                    imageViewEnCentro?.visibility = View.INVISIBLE
                 }
             }
             true
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getArrayData(movies: List<TmdbApiService.Movies>) {
         for (movie in movies) {
             val model = DataModel()
+            val inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val outputFormat = DateTimeFormatter.ofPattern("yyyy")
+            val year = YearMonth.from(LocalDate.parse(movie.release_date, inputFormat)).year
+
+            model.setAñoEstreno(year.toString())
             model.setName(movie.title)
-            model.setAñoEstreno(movie.release_date)
             model.setPhoto(getImageResourceForMovie(movie.poster_path))
             model.setPlataforma(getPlatformForMovie(movie.title))
-            model.setClasificacion(movie.vote_average.toString())
+            model.setClasificacion(String.format("%.1f", movie.vote_average))
             model.setDescripcion(movie.overview)
 
             // Otros campos que desees asignar al modelo de datos
