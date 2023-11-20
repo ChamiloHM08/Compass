@@ -20,6 +20,8 @@ import androidx.annotation.RequiresApi
 
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,6 +51,10 @@ class JuegosFragment : Fragment() {
     private var xCord = 0
     private var x = 0
     private var likes = 0
+    private val apiKey = "8cfb3de7194927508a93970ddb761e47"
+    private val page = 4
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,15 +69,20 @@ class JuegosFragment : Fragment() {
 
 
 
-        val apiKey = "8cfb3de7194927508a93970ddb761e47"
-        val page = 2
+
         val call = tmdbApiService.getPopularMovies(apiKey,page)
+        val db = FirebaseFirestore.getInstance()
+
 
         call.enqueue(object : Callback<TmdbApiService.MovieResponse> {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(call: Call<TmdbApiService.MovieResponse>, response: Response<TmdbApiService.MovieResponse>) {
                 if (response.isSuccessful) {
 
                     val movies = response.body()?.results
+                    // Inicializar Firebase Authentication
+                    auth = FirebaseAuth.getInstance()
+
                     getArrayData(movies ?: emptyList())
                     createCards()
 
@@ -91,7 +102,7 @@ class JuegosFragment : Fragment() {
 
         // Asignar la función onButtonClick como OnClickListener a los botones
         btnLike.setOnClickListener { onButtonClick(2) }
-        btnRewind.setOnClickListener { onButtonClick(0) }
+        btnRewind.setOnClickListener { onButtonClick(3) }
         btnDislike.setOnClickListener { onButtonClick(1) }
 
         val size = Point()
@@ -111,10 +122,10 @@ class JuegosFragment : Fragment() {
             val currentCard = parentView.getChildAt(currentCardIndex)
 
             when (likes) {
-                0 -> {
-                    showToast("Nada")
-                    currentCard.x = 0f
-                    currentCard.rotation = 0f
+                3 -> {
+
+
+
                 }
                 1 -> {
                     showToast("No")
@@ -122,6 +133,27 @@ class JuegosFragment : Fragment() {
                 }
                 2 -> {
                     showToast("Sí")
+                    // Obtener el título de la película actual
+                    val currentMovieTitle = userDataModelArrayList[currentCardIndex].getName()
+
+                    // Crear una nueva colección en Firestore y guardar el título
+                    val user = auth.currentUser
+                    if (user != null) {
+                        val userId = user.uid
+                        val collectionRef = db.collection("usuarios").document(userId).collection("peliculas_favoritas")
+
+                        val data = hashMapOf(
+                            "titulo" to currentMovieTitle
+                        )
+
+                        collectionRef.add(data)
+                            .addOnSuccessListener {
+                                showToast("Película guardada en favoritos")
+                            }
+                            .addOnFailureListener {
+                                showToast("Error al guardar la película")
+                            }
+                    }
                     parentView.removeView(currentCard)
                 }
             }
@@ -163,6 +195,7 @@ class JuegosFragment : Fragment() {
 
         return containerView
     }
+
     private fun setupTextViews(containerView: View, dataModel: DataModel) {
         val tvName = containerView.findViewById<TextView>(R.id.tvName)
         val plataformaRec = containerView.findViewById<TextView>(R.id.plataforma_rec)
@@ -224,20 +257,18 @@ class JuegosFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getArrayData(movies: List<TmdbApiService.Movies>) {
-        for (movie in movies) {
+        val moviesToProcess = movies.take(7)
+        for (movie in moviesToProcess) {
             val model = DataModel()
             val inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val outputFormat = DateTimeFormatter.ofPattern("yyyy")
             val year = YearMonth.from(LocalDate.parse(movie.release_date, inputFormat)).year
 
             model.setAñoEstreno(year.toString())
             model.setName(movie.title)
             model.setPhoto(getImageResourceForMovie(movie.poster_path))
-            model.setPlataforma(getPlatformForMovie(movie.title))
+            model.setPlataforma(getPlatformForMovie(movie.id))
             model.setClasificacion(String.format("%.1f", movie.vote_average))
             model.setDescripcion(movie.overview)
-
-            // Otros campos que desees asignar al modelo de datos
 
             userDataModelArrayList.add(model)
         }
@@ -246,15 +277,19 @@ class JuegosFragment : Fragment() {
 
     private fun getImageResourceForMovie(posterPath: String): String {
         val baseUrl = "https://image.tmdb.org/t/p/"
-        val posterSize = "w500"  // Puedes ajustar el tamaño según tus preferencias
-
+        val posterSize = "w500"
         return baseUrl + posterSize + posterPath
     }
+    private fun getPlatformForMovie(movieId: Int): String {
+        // Lista de plataformas de streaming
+        val plataformas = listOf("Netflix", "Amazon Prime Video", "Hulu", "Disney+", "HBO Max", "Apple TV+")
 
-    private fun getPlatformForMovie(movieName: String): String {
-        // Implementa tu lógica para obtener la plataforma según el nombre de la película
-        // Retorna la misma plataforma para todas las películas en este caso
-        return movieName
+        // Seleccionar una plataforma al azar
+        val plataformaSeleccionada = plataformas.random()
+
+        // Puedes realizar acciones adicionales aquí, como guardar la plataforma en una base de datos
+
+        return plataformaSeleccionada
     }
 
 }

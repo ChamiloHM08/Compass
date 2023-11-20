@@ -13,7 +13,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/compass" />
 
     <TextView
@@ -30,25 +30,25 @@
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_below="@id/textViewTitle"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="74dp"
+        android:background="@drawable/edit_text_background"
         android:hint="Correo Electrónico"
-        android:textColorHint="#A5A5A5"
         android:textColor="#000000"
-        android:background="@drawable/edit_text_background" />
+        android:textColorHint="#A5A5A5" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_below="@id/editTextEmail"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="17dp"
         android:background="@drawable/edit_text_background"
-        android:textColorHint="#A5A5A5"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textColorHint="#A5A5A5" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextPassword"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="79dp"
         android:text="Iniciar Sesión"
         android:textColor="#FFFFFF" />
 
@@ -66,17 +66,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonLogin"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="36dp"
         android:text="Registrarse"
         android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/buttonTest"
         style="@style/OvalButtonStyle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonLogin"
-        android:layout_marginTop="90dp"
+        android:layout_below="@+id/buttonRegister"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="107dp"
         android:text="Ingreso Express"
         android:textColor="#FFFFFF" />
 

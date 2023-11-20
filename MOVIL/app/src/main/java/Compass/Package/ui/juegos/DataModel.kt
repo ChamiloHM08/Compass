@@ -7,7 +7,7 @@ class DataModel : Serializable {
     private var totalLikes: String? = null
     private var photo: String?=null
     private var añoEstreno : String?=null
-    private var plataforma: String? = null
+    private var plataforma: String? = null // Cambiado a String
     private var clasificacion: String? = null
     private var descripcion: String? = null
 
@@ -43,7 +43,7 @@ class DataModel : Serializable {
         this.photo = photo
     }
 
-    fun getPlataforma(): String? {
+    fun getPlataforma(): String?{
         return plataforma
     }
 
